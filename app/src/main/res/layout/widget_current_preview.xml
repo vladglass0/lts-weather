@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:src="@drawable/widget_pill"
+        android:tint="@android:color/system_neutral2_100" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="36dp"
+        android:text="21°"
+        android:textColor="@android:color/system_neutral1_900"
+        android:textSize="64sp" />
+
+    <ImageView
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="76dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_wx_clear_day" />
+</FrameLayout>

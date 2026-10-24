@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">LTS Weather</string>
+
+    <string name="widget_current_label">Current weather</string>
+    <string name="widget_current_desc">See current weather</string>
+    <string name="widget_forecast_label">Forecasted weather</string>
+    <string name="widget_forecast_desc">See forecasted weather</string>
+    <string name="feels_like">Feels like %1$s</string>
+    <string name="now">Now</string>
+    <string name="widget_no_data">Open the app to set a location</string>
+
+    <string name="app_title">Weather</string>
+    <string name="current_location">Current location</string>
+    <string name="saved_locations">Saved locations</string>
+    <string name="search_to_save">Search to save a location</string>
+    <string name="my_location">Detect my location</string>
+    <string name="search_city">City</string>
+    <string name="find">Find</string>
+    <string name="city_not_found">City not found</string>
+    <string name="location_failed">Could not get location</string>
+    <string name="network_error">Could not load weather</string>
+
+    <string name="wx_clear">Clear</string>
+    <string name="wx_partly">Partly cloudy</string>
+    <string name="wx_cloudy">Cloudy</string>
+    <string name="wx_fog">Fog</string>
+    <string name="wx_rain">Rain</string>
+    <string name="wx_snow">Snow</string>
+    <string name="wx_thunder">Thunderstorm</string>
+</resources>

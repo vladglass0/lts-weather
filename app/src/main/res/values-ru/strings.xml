@@ -1,0 +1,28 @@
+<resources>
+    <string name="widget_current_label">Погода сейчас</string>
+    <string name="widget_current_desc">Текущая погода</string>
+    <string name="widget_forecast_label">Прогноз погоды</string>
+    <string name="widget_forecast_desc">Прогноз на ближайшие часы</string>
+    <string name="feels_like">Ощущается как %1$s</string>
+    <string name="now">Сейчас</string>
+    <string name="widget_no_data">Откройте приложение и выберите место</string>
+
+    <string name="app_title">Погода</string>
+    <string name="current_location">Текущее местоположение</string>
+    <string name="saved_locations">Сохранённые места</string>
+    <string name="search_to_save">Найдите город, чтобы сохранить его</string>
+    <string name="my_location">Определить местоположение</string>
+    <string name="search_city">Город</string>
+    <string name="find">Найти</string>
+    <string name="city_not_found">Город не найден</string>
+    <string name="location_failed">Не удалось определить местоположение</string>
+    <string name="network_error">Не удалось загрузить погоду</string>
+
+    <string name="wx_clear">Ясно</string>
+    <string name="wx_partly">Переменная облачность</string>
+    <string name="wx_cloudy">Облачно</string>
+    <string name="wx_fog">Туман</string>
+    <string name="wx_rain">Дождь</string>
+    <string name="wx_snow">Снег</string>
+    <string name="wx_thunder">Гроза</string>
+</resources>
