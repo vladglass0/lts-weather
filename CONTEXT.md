@@ -10,7 +10,7 @@
 - Размеры/ресайз/`updatePeriodMillis=2700000` виджетов взяты из `appwidget-provider` оригинала.
 
 ## Структура (`app/src/main/java/dev/rtxbb/weather/`)
-- `data/Weather.kt` — модели, `OpenMeteo.fetchJson/searchCity/parse`, WMO-код → иконка/строка.
+- `data/Weather.kt` — модели, `OpenMeteo.fetchJson/fromMet/searchCity/parse`, WMO-код → иконка/строка.
 - `data/Location.kt` — `Prefs` (SharedPreferences `places`: `selected` — место виджетов, `gps`, `saved` — список), `currentPlace()` (LocationManager + Geocoder).
 - `widget/WeatherWidgets.kt` — `CurrentWeatherWidget` (2×2: наклонная пилюля, температура, иконка), `ForecastWidget` (4×3: город, состояние, «ощущается как», max·min, большая температура, полоса «Сейчас» + 6 часов), ресиверы, `refreshWidgets()`.
 - `MainActivity.kt` — экран как у Pixel Weather: «Текущее местоположение», «Сохранённые места», FAB поиска. Тап по карточке = место для виджетов. При открытии вызывает `refreshWidgets()`.
@@ -26,7 +26,7 @@
 - **Открытая проблема:** на Realme Pad (Android 13) виджеты пишут «Откройте приложение…», карточки без погоды.
   Причина — сеть: `api.open-meteo.com` (157.90.83.168, Hetzner) недоступен у провайдера (`SocketTimeoutException`).
   С планшета работают: `geocoding-api.open-meteo.com`, `api.met.no`, `wttr.in`. ПК ходит через VPN (fake-IP 198.18.x.x), поэтому там всё работало.
-- **Варианты (не выбран):** перейти на MET Norway (`api.met.no`, нужен User-Agent; min/max считать из часовых, «ощущается как» по формуле); Open-Meteo с откатом на MET; или VPN на планшете без изменений кода.
+- **Решение:** Open-Meteo с откатом на MET Norway. `OpenMeteo.fetchJson` при `IOException` берёт `api.met.no` (User-Agent обязателен) и `fromMet` переводит ответ в формат Open-Meteo, так что кэш и `parse` не менялись. min/max берутся из оставшихся часов сегодня, «ощущается как» — формула Стедмана, время — в поясе устройства. На планшете ещё не проверено.
 
 ## Проверка
 ```

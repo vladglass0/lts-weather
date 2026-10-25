@@ -4,6 +4,7 @@ import dev.rtxbb.weather.data.OpenMeteo
 import dev.rtxbb.weather.data.weatherIcon
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.time.ZoneOffset
 
 class WeatherParseTest {
     private val json = """
@@ -24,6 +25,31 @@ class WeatherParseTest {
         assertEquals(9, w.max)
         // 13:00 is already past 13:15, so the strip starts at 14:00
         assertEquals(listOf("14:00", "15:00"), w.hourly.map { it.time })
+        assertEquals(false, w.hourly[1].isDay)
+    }
+
+    private fun met(time: String, t: Double, symbol: String?) = """
+        {"time":"$time","data":{"instant":{"details":{"air_temperature":$t,"relative_humidity":80.0,"wind_speed":3.0}}
+         ${symbol?.let { ""","next_1_hours":{"summary":{"symbol_code":"$it"}}""" } ?: ""}}}
+    """
+
+    @Test
+    fun convertsMetForecast() {
+        val series = listOf(
+            met("2026-10-25T10:00:00Z", 7.6, "lightrain"),
+            met("2026-10-25T11:00:00Z", 9.4, "partlycloudy_day"),
+            met("2026-10-25T21:00:00Z", 2.0, "clearsky_night"),
+            met("2026-10-26T00:00:00Z", -9.0, null),
+        ).joinToString(",")
+        val w = OpenMeteo.parse(OpenMeteo.fromMet("""{"properties":{"timeseries":[$series]}}""", ZoneOffset.ofHours(3)))
+        assertEquals(8, w.temp)
+        assertEquals(4, w.feelsLike)
+        assertEquals(61, w.code)
+        // 21:00Z is already tomorrow at +3, and the 6-hourly step is dropped
+        assertEquals(8, w.min)
+        assertEquals(9, w.max)
+        assertEquals(listOf("14:00", "00:00"), w.hourly.map { it.time })
+        assertEquals(listOf(2, 0), w.hourly.map { it.code })
         assertEquals(false, w.hourly[1].isDay)
     }
 
